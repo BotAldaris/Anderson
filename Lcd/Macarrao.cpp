@@ -15,7 +15,6 @@ int Macarrao::calculaPid()
     int valorPid = constrain((int)soma, 0, 255);
 
     ultimoErro = erro;
-
     int tempoDesativado = map(valorPid, 0, 255, 0, 5000);
     return tempoDesativado;
 }
@@ -28,10 +27,11 @@ void Macarrao::run()
     }
     if (temporizador.tempoPidConcluido())
     {
-        digitalWrite(pinoRele, LOW);
         int tempoDesativado = calculaPid();
+        if (tempoDesativado > 1)
+        {
+            digitalWrite(pinoRele, LOW);
+        }
         temporizador.configurar(tempoDesativado);
-        Serial.println("tempo Desativado ");
-        Serial.println(tempoDesativado);
     }
 }

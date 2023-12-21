@@ -9,34 +9,34 @@ void ControladorKeypad::run()
         switch (key)
         {
         case '1':
-            novaTemp += "1";
+            adicionarNumero("1");
             break;
         case '2':
-            novaTemp += "2";
+            adicionarNumero("2");
             break;
         case '3':
-            novaTemp += "3";
+            adicionarNumero("3");
             break;
         case '4':
-            novaTemp += "4";
+            adicionarNumero("4");
             break;
         case '5':
-            novaTemp += "5";
+            adicionarNumero("5");
             break;
         case '6':
-            novaTemp += "6";
+            adicionarNumero("6");
             break;
         case '7':
-            novaTemp += "7";
+            adicionarNumero("7");
             break;
         case '8':
-            novaTemp += "8";
+            adicionarNumero("8");
             break;
         case '9':
-            novaTemp += "9";
+            adicionarNumero("9");
             break;
         case '0':
-            novaTemp += " 0";
+            adicionarNumero("0");
             break;
         case 'B':
             novaTemp.remove(novaTemp.length() - 1);
@@ -50,7 +50,6 @@ void ControladorKeypad::run()
     {
         outrasTeclas(key);
     }
-    Serial.print(key);
 }
 
 void ControladorKeypad::outrasTeclas(char key)
@@ -68,8 +67,15 @@ void ControladorKeypad::outrasTeclas(char key)
     case '#':
         ativo = false;
         novaTemp = "";
+        display.escreverNaTelaTemperatura("Set Temp: ", temp.getTemperaturaSetPoint(), 1);
         break;
     default:
         break;
     }
+}
+
+void ControladorKeypad::adicionarNumero(String number)
+{
+    novaTemp += number;
+    display.escreverNaTelaTemperatura("Set Temp: ", novaTemp.toFloat(), 1);
 }

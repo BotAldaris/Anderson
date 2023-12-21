@@ -10,21 +10,20 @@ private:
   float temperatura;
   int temmperaturaSetPoint;
   int temperaturaAjustavel;
-  Display display;
+  Display &display;
 
   void controlarTemperatura(bool aumentarTemperatura);
 
 public:
-  ControladorDeTemperatura(Display disp)
+  ControladorDeTemperatura(Display &disp) : display(disp)
   {
     display = disp;
     temperatura = 20;
-    temmperaturaSetPoint = 40;
-    temperaturaAjustavel = 20;
+    temmperaturaSetPoint = 20;
+    temperaturaAjustavel = 40;
     display.escreverNaTelaTemperatura("Temp: ", temperatura, 0);
     display.escreverNaTelaTemperatura("Set Temp: ", temmperaturaSetPoint, 1);
   }
-  ControladorDeTemperatura();
   void run(float temp);
   void setTemperaturaSetPoint();
   int getTemperaturaSetPoint();

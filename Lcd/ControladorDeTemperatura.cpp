@@ -25,7 +25,6 @@ void ControladorDeTemperatura::run(float temp)
     if (temperatura != temp)
     {
         temperatura = temp;
-        Serial.println(temperatura);
         display.atualizarNaTelaTemperatura(temperatura, 0, 6);
     }
 }
@@ -44,11 +43,11 @@ void ControladorDeTemperatura::setTemperatura(String novoSetPointt)
     int novoSetPoint = novoSetPointt.toInt();
     if (!(novoSetPoint == 0 && novoSetPointt != "0"))
     {
-        if (novoSetPoint > 55)
+        if (novoSetPoint > 50)
         {
             temmperaturaSetPoint = 55;
         }
-        else if (novoSetPoint < 25)
+        else if (novoSetPoint < 30)
         {
             temmperaturaSetPoint = 25;
         }
@@ -56,8 +55,6 @@ void ControladorDeTemperatura::setTemperatura(String novoSetPointt)
         {
             temmperaturaSetPoint = novoSetPoint;
         }
+        display.atualizarNaTelaTemperatura(temmperaturaSetPoint, 1, 10);
     }
-    Serial.print("Temp trocada com sucesso, nova temp: ");
-    Serial.print(temmperaturaSetPoint);
 }
-ControladorDeTemperatura::ControladorDeTemperatura() {}

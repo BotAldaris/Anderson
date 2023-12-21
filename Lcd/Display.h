@@ -5,7 +5,7 @@
 class Display
 {
 private:
-    LiquidCrystal lcd = LiquidCrystal(12, 11, 7, 6, 5, 4);
+    LiquidCrystal lcd = LiquidCrystal(13, 12, 7, 6, 5, 4);
     void limparDisplayLinha(int linha);
 
 public:

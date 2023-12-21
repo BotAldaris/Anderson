@@ -29,7 +29,7 @@ DeviceAddress sensor;
 Display display;
 Temporizador temporizador(5000);
 ControladorDeTemperatura controladorDeTemperatura(display);
-ControladorKeypad controladorKeypad(controladorDeTemperatura, keypad);
+ControladorKeypad controladorKeypad(controladorDeTemperatura, keypad, display);
 Macarrao macarrao(controladorDeTemperatura, temporizador);
 void setup()
 {
@@ -46,7 +46,7 @@ void loop()
   barramento.requestTemperatures();
   float temperatura = barramento.getTempC(sensor);
   // int buttonValue = button.getState();
-
+  Serial.println(temperatura);
   controladorDeTemperatura.run(temperatura);
   controladorKeypad.run();
   macarrao.run();
